@@ -1,0 +1,45 @@
+mean_median.js
+
+const readlineSync = require("readline-sync");
+
+let numbers = [];
+let input;
+
+console.log("Enter integers one at a time. Type 'q' to finish.");
+
+while (true) {
+    input = readlineSync.question("Enter a number (or 'q' to quit): ");
+
+    if (input.toLowerCase() === 'q') break;
+
+    let number = parseInt(input);
+    if (!isNaN(number)) {
+        numbers.push(number);
+    } else {
+        console.log("Invalid input. Please enter an integer or 'q' to quit.");
+    }
+}
+
+if (numbers.length === 0) {
+    console.log("No numbers entered. Exiting program.");
+    process.exit(0);
+}
+
+function calculateMean(arr) {
+    return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+
+function calculateMedian(arr) {
+    let sorted = [...arr].sort((a, b) => a - b);
+    let mid = Math.floor(sorted.length / 2);
+    return (sorted.length % 2 === 0)
+        ? (sorted[mid - 1] + sorted[mid]) / 2
+        : sorted[mid];
+}
+
+let mean = calculateMean(numbers);
+let median = calculateMedian(numbers);
+
+console.log(`\nNumbers: ${numbers.join(", ")}`);
+console.log(`Mean: ${mean}`);
+console.log(`Median: ${median}`);
