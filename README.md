@@ -1,1 +1,1 @@
-# ProgrammingAssignment1
+This program allows the user to enter a list of integers and calculates the mean (average) and median. It includes basic input validation to ensure only numbers are accepted and provides a way to stop input using 'q'. Results are printed in the console.
